@@ -1,10 +1,4 @@
 import './globals.css';
-import type { Metadata } from 'next';
-
-export const metadata: Metadata = {
-  title: 'BlindSpot',
-  description: 'Stay informed with AI-powered news',
-};
 
 export default function RootLayout({
   children,
@@ -16,4 +10,4 @@ export default function RootLayout({
       <body className="h-full antialiased">{children}</body>
     </html>
   );
-} 
+}
