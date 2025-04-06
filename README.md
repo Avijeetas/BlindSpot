@@ -1,7 +1,19 @@
 # **What Am I Missing.com?**
 by Team Blindspot
 
-This project is part of GrandinnoHack Interdesciplinary Graduate Hackathon
+## 👥 Team Members
+| Name                   | Program     | LinkedIn |
+|------------------------|-------------|----------|
+| Sai Charan Merugu      | MS Computer Science (CS) | [@sai-charan-merugu-6a44ab225](https://www.linkedin.com/in/sai-charan-merugu-6a44ab225/) |
+| Sara Santillanes       | MS Applied Data and Technology Analytics (ADTA) | [@sara-g-santillanes](https://www.linkedin.com/in/sara-g-santillanes/) |
+| Naga Sai Sivani Tutika | MS Artificial Intelligence (AI) | [@sivani-tutika](https://www.linkedin.com/in/sivani-tutika/) |
+| Vennela Balagala       | MS Computer Information Systems (CIS) | [@vennela-balagala](https://www.linkedin.com/in/vennela-balagala/) |
+| Avijeet Shil           | PhD Computer Science (CS) | [@avijeetshil](https://www.linkedin.com/in/avijeetshil/) |
+
+
+
+This project is part of [GrandinnoHack Interdesciplinary Graduate Hackathon](https://www.gradinnohack.com/)
+
 GradinnoHack Table Choices:
 | Category      | Details             |
 |---------------|---------------------|
@@ -61,12 +73,47 @@ We developed a website where users can input biographical information and a topi
 - **Agentic Programming:** Inspired by MCP, layering context-specific prompts to improve the quality and relevance of AI-generated summaries.
 
 
+Here’s how you can structure the markdown to include an option to extend for additional details or features:
 
-## 👥 Team Members
-| Name                   | Program     | LinkedIn |
-|------------------------|-------------|----------|
-| Sai Charan Merugu      | MS Computer Science (CS) | [@sai-charan-merugu-6a44ab225](https://www.linkedin.com/in/sai-charan-merugu-6a44ab225/) |
-| Sara Santillanes       | MS Applied Data and Technology Analytics (ADTA) | [@sara-g-santillanes](https://www.linkedin.com/in/sara-g-santillanes/) |
-| Naga Sai Sivani Tutika | MS Artificial Intelligence (AI) | [@sivani-tutika](https://www.linkedin.com/in/sivani-tutika/) |
-| Vennela Balagala       | MS Computer Information Systems (CIS) | [@vennela-balagala](https://www.linkedin.com/in/vennela-balagala/) |
-| Avijeet Shil           | PhD Computer Science (CS) | [@avijeetshil](https://www.linkedin.com/in/avijeetshil/) |
+
+## Running the Next.js Project and Python Backend
+
+Follow the steps below to run the Next.js project and start the Python backend:
+
+### 1. **Clone the Repository** (if you haven't already):
+   ```bash
+   git clone <your-repository-url>
+   cd blind-spot
+   ```
+
+### 2. **Install Dependencies for Next.js Frontend:**
+   ```bash
+   npm install
+   ```
+
+### 3. **Build the Next.js Project:**
+   ```bash
+   npm run build
+   ```
+
+### 4. **Start the Next.js Development Server:**
+   ```bash
+   npm start
+   ```
+
+Your Next.js app should now be running on `http://your_backend_server:3000`.
+
+---
+
+### 5. **Start the Python Backend using Uvicorn:**
+To run the Python backend, use the following command:
+
+   ```bash
+   uvicorn app:app --reload --port 8000
+   ```
+
+This will start the FastAPI server at `http://your_backend_server:8000`, where the APIs are available.
+
+
+
+
