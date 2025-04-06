@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { createClient } from '../lib/superbase/client';
 import Image from 'next/image';
-import { Sun, Moon, Menu, User, LogOut, Circle, ThumbsDown } from 'lucide-react';
+import { Sun, Moon, Menu, User, Circle } from 'lucide-react';
 
 import { useRouter } from 'next/router';
 import '../../src/app/globals.css';
@@ -375,7 +375,7 @@ const Dashboard = () => {
                 
               {!isProfileComplete && (
               <div className={`${cardBg} mx-auto rounded-lg shadow p-6 ${borderColor} border w-full max-w-2xl`}>
-              <h2 className="text-xl font-semibold mb-4 text-center">Let's get started</h2>
+              <h2 className="text-xl font-semibold mb-4 text-center">Let`s get started</h2>
               <p className="text-center mb-4">To begin, set up your profile and preferences.</p>
               
               <ul className="space-y-3 mb-4">
