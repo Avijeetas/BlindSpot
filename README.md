@@ -63,12 +63,10 @@ We developed a website where users can input biographical information and a topi
 
 
 ## 👥 Team Members
-
-| Name                   | Program     |
-|------------------------|-------------|
-| Sai Charan Merugu      | MS Computer Science (CS) |
-| Sara Santillanes       | MS Applied Data and Technology Analytics (ADTA) |
-| Naga Sai Sivani Tutika | MS Artificial Intelligence (AI) |
-| Vennela Balagala       | MS Computer Information Systems (CIS) |
-| Avijeet Shil           | PhD Computer Science (CS) |
-
+| Name                   | Program     | LinkedIn |
+|------------------------|-------------|----------|
+| Sai Charan Merugu      | MS Computer Science (CS) | [@sai-charan-merugu-6a44ab225](https://www.linkedin.com/in/sai-charan-merugu-6a44ab225/) |
+| Sara Santillanes       | MS Applied Data and Technology Analytics (ADTA) | [@sara-g-santillanes](https://www.linkedin.com/in/sara-g-santillanes/) |
+| Naga Sai Sivani Tutika | MS Artificial Intelligence (AI) | [@sivani-tutika](https://www.linkedin.com/in/sivani-tutika/) |
+| Vennela Balagala       | MS Computer Information Systems (CIS) | [@vennela-balagala](https://www.linkedin.com/in/vennela-balagala/) |
+| Avijeet Shil           | PhD Computer Science (CS) | [@avijeetshil](https://www.linkedin.com/in/avijeetshil/) |
