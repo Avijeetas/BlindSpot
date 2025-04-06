@@ -9,7 +9,7 @@
 !.yarn/plugins
 !.yarn/releases
 !.yarn/versions
-
+package-lock.json
 # testing
 /coverage
 
@@ -39,3 +39,10 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+#json
+../client_secret_567421374884-ebotg7n8tf8ba9e3ebdk1bc6pg2ar4uk.apps.googleusercontent.com.json
+
+
+
+
