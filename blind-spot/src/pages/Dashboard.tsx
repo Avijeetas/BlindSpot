@@ -3,7 +3,8 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { createClient } from '../lib/superbase/client';
 import Image from 'next/image';
-import { Sun, Moon, Menu, User } from 'lucide-react';
+import { Sun, Moon, Menu, User, LogOut, Circle, ThumbsDown } from 'lucide-react';
+
 import { useRouter } from 'next/router';
 import '../../src/app/globals.css';
 import Link from 'next/link';
@@ -194,7 +195,8 @@ const Dashboard = () => {
   const router = useRouter();
   const supabase = createClient();
   const [isProfileComplete, setIsProfileComplete] = useState(false);
-
+  const cardBg = darkMode ? 'bg-gray-800' : 'bg-white';
+  
   useEffect(() => {
     setMounted(true);
     const storedDarkMode = localStorage.getItem('darkMode');
@@ -365,13 +367,32 @@ const Dashboard = () => {
       </div>
 
       {/* Main Content */}
-      { isProfileComplete && 
+      { user && 
             <div className="container mx-auto p-4">
             <div className="grid grid-cols-1 gap-8">
               {/* Dashboard Content */}
               <div className="flex flex-col gap-6">
                 
-                {/* Topic Discussion Section */}
+              {!isProfileComplete && (
+              <div className={`${cardBg} mx-auto rounded-lg shadow p-6 ${borderColor} border w-full max-w-2xl`}>
+              <h2 className="text-xl font-semibold mb-4 text-center">Let's get started</h2>
+              <p className="text-center mb-4">To begin, set up your profile and preferences.</p>
+              
+              <ul className="space-y-3 mb-4">
+                  <li className="flex items-center gap-2 justify-center">
+                    <Circle className="text-gray-500" size={18} />
+                    <span
+                      className="cursor-pointer text-blue-600"
+                      onClick={() => router.push('/Profile')}
+                    >
+                      Setup user profile and preferences
+                    </span>
+                  </li>
+                </ul>
+                </div>
+
+            ) }
+                { isProfileComplete && <>
                 <TopicDiscussion />
     
                 {/* Topics List */}
@@ -401,6 +422,8 @@ const Dashboard = () => {
                     </button>
                   </div>
                 </div>
+                </>/* Topic Discussion Section */}
+                
               </div>
             </div>
           </div>
