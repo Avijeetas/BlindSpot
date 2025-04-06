@@ -1,5 +1,7 @@
+'use client';
+
 import { useState, useEffect } from 'react';
-import { createClient } from '../../lib/superbase/client';
+import { createClient } from '../../lib/superbase/client'; // make sure this points to your Supabase client
 import { User } from '@supabase/supabase-js';
 
 const Chat: React.FC = () => {
@@ -9,56 +11,93 @@ const Chat: React.FC = () => {
 
   const fetchUser = async () => {
     try {
-      const { data: { session }, error: sessionError } = await supabase.auth.getSession();
-      if (sessionError) {
-        console.error('Session fetch error:', sessionError);
-        return;
-      }
+      const { data: { session } } = await supabase.auth.getSession();
       if (!session) {
-        console.log('No session found');
+        setUser(null);
         return;
       }
 
-      const { data: { user }, error: userError } = await supabase.auth.getUser();
-      if (userError) {
-        console.error('User fetch error:', userError);
-      } else if (user) {
-        console.log('User fetched:', user);
+      const { data: { user }, error } = await supabase.auth.getUser();
+      if (error || !user) {
+        console.error('User fetch error:', error);
+        setUser(null);
+      } else {
         setUser(user);
       }
     } catch (err) {
-      console.error('Unexpected error:', err);
+      console.error('Unexpected error in fetchUser:', err);
+      setUser(null);
     }
   };
 
   useEffect(() => {
     fetchUser();
 
-    const { data: authListener } = supabase.auth.onAuthStateChange((event, session) => {
-      
-      if (event === 'SIGNED_IN') {
-        setUser(session?.user ?? null);
-      } else if (event === 'SIGNED_OUT') {
+    const { data: listener } = supabase.auth.onAuthStateChange((_event, session) => {
+      if (session?.user) {
+        setUser(session.user);
+      } else {
         setUser(null);
-      } else if (event === 'INITIAL_SESSION') {
-        if (session) {
-          console.log('Initial session found:', session);
-          setUser(session.user);
-        } else {
-          console.log('No initial session');
-        }
       }
     });
 
-    // Cleanup the listener on component unmount
     return () => {
-      authListener?.unsubscribe();
+      listener.subscription.unsubscribe();
     };
-  }, []); // Empty dependency array to run only on mount
+  }, []);
+
+  const handleGoogleSignIn = async () => {
+    setIsLoading(true);
+    try {
+      const { error } = await supabase.auth.signInWithOAuth({
+        provider: 'google',
+        options: {
+          redirectTo: `http://zvxuskrcmnnspkiaobta.supabase.co/api/auth/callback`,
+        },
+      });
+      if (error) throw error;
+    } catch (err) {
+      console.error('Sign-in error:', err);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleSignOut = async () => {
+    try {
+      await supabase.auth.signOut();
+      setUser(null);
+    } catch (err) {
+      console.error('Sign out error:', err);
+    }
+  };
 
   return (
-    <div>
-      {isLoading ? <p>Loading...</p> : user ? <p>Welcome, {user.email}!</p> : <p>Please sign in.</p>}
+    <div style={{ maxWidth: '600px', margin: '0 auto', padding: '20px' }}>
+      {user ? (
+        <div>
+          <h2>Welcome, {user.user_metadata?.full_name || 'User'}!</h2>
+          <p>Email: {user.email}</p>
+          {user.user_metadata?.avatar_url && (
+            <img
+              src={user.user_metadata.avatar_url}
+              alt="Profile"
+              style={{ width: '100px', height: '100px', borderRadius: '50%' }}
+            />
+          )}
+          <button onClick={handleSignOut} style={{ padding: '8px 16px', marginTop: '10px' }}>
+            Sign Out
+          </button>
+        </div>
+      ) : (
+        <button
+          onClick={handleGoogleSignIn}
+          disabled={isLoading}
+          style={{ padding: '10px 20px' }}
+        >
+          {isLoading ? 'Signing in...' : 'Sign in with Google'}
+        </button>
+      )}
     </div>
   );
 };
