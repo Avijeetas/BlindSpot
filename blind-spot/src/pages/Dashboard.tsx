@@ -17,6 +17,11 @@ interface UserProfile {
     avatar_url?: string;
   };
 }
+interface Prompt {
+  prompt_id: string; // Unique identifier for the prompt
+  prompt: string;    // The actual prompt text
+  perspective: string; // Additional perspective or context related to the prompt
+}
 
 const TopicDiscussion = () => {
   const [topic, setTopic] = useState('');
@@ -195,6 +200,7 @@ const Dashboard = () => {
   const router = useRouter();
   const supabase = createClient();
   const [isProfileComplete, setIsProfileComplete] = useState(false);
+  const [prompts, setPrompts] = useState<Prompt[]>([]);
   const cardBg = darkMode ? 'bg-gray-800' : 'bg-white';
   
   useEffect(() => {
@@ -229,6 +235,24 @@ const Dashboard = () => {
   }, [supabase]);
  
   useEffect(() => {
+    const fetchPrompt = async (userId: string) => {
+      const { data, error } = await supabase
+        .from('prompts')
+        .select('prompt_id, prompt, prespective')
+        .eq('user_id', userId)
+        .single();
+  
+      if (error) {
+        console.error('Error fetching user data:', error);
+        return;
+      }
+  
+      if (data) {
+        setPrompts(data);
+        setInputTopic(data.prompt);
+      }
+     
+    };
     const checkProfileComplete = async (userId: string) => {
       const { data, error } = await supabase
         .from('users')
@@ -264,7 +288,7 @@ const Dashboard = () => {
     return () => {
       subscription.unsubscribe();
     };
-  }, [fetchUser, supabase]);
+  }, [fetchUser, supabase,]);
 
   const handleClickOutside = (event: MouseEvent) => {
     if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
