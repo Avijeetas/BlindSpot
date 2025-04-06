@@ -60,10 +60,10 @@ const Blindspot: React.FC = () => {
         </p>
         <button 
           onClick={handleGoogleSignIn}
-          className="flex items-center justify-center px-6 py-3 text-lg text-white bg-blue-600 border-none rounded-full cursor-pointer transition-transform duration-300 hover:transform hover:scale-105 hover:shadow-lg"
+          className="flex items-center mx-auto justify-center px-6 py-3 text-lg text-white bg-blue-600 border-none rounded-full cursor-pointer transition-transform duration-300 hover:transform hover:scale-105 hover:shadow-lg"
         >
           <span className="w-5 h-5 mr-3 text-xl">G</span>
-          Sign in with Google
+          Continue with Google
         </button>
       </div>
     </div>
