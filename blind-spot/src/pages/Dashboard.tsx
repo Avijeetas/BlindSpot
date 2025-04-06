@@ -6,7 +6,6 @@ import Image from 'next/image';
 import { Sun, Moon, Menu, User, Circle } from 'lucide-react';
 
 import { useRouter } from 'next/router';
-import '../../src/app/globals.css';
 import Link from 'next/link';
 
 interface UserProfile {
