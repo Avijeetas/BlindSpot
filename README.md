@@ -9,7 +9,7 @@ GradinnoHack Table Choices:
 | Impact Area   | Media Literacy      |
 | User Group    | Youth & Students    |
 
-##Problem Statement
+## Problem Statement
 
 Digital platforms increasingly shape the way we consume news by tailoring content through algorithms, often limiting exposure to diverse perspectives. This results in people of different political orientations, age groups, or media ecosystems having fundamentally different understandings of current events, contributing to social fragmentation and declining media literacy.
 
