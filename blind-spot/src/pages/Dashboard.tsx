@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { createClient } from '../lib/superbase/client';
 import Image from 'next/image';
-import { Sun, Moon, Menu, User, LogOut, Circle, ThumbsDown } from 'lucide-react';
+import { Sun, Moon, Menu, User } from 'lucide-react';
 import { useRouter } from 'next/router';
 import '../../src/app/globals.css';
 import Link from 'next/link';
@@ -224,9 +224,27 @@ const Dashboard = () => {
     } catch (err) {
       console.error('Error fetching user:', err);
     }
-  }, []);
-
+  }, [supabase]);
+ 
   useEffect(() => {
+    const checkProfileComplete = async (userId: string) => {
+      const { data, error } = await supabase
+        .from('users')
+        .select('age_category, gender, occupation, location')
+        .eq('user_id', userId)
+        .single();
+  
+      if (error) {
+        console.error('Error fetching user data:', error);
+        return;
+      }
+  
+      if (data?.age_category && data?.gender && data?.occupation && data?.location) {
+        setIsProfileComplete(true);
+      } else {
+        setIsProfileComplete(false);
+      }
+    };
     fetchUser();
     const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
       if (session?.user) {
@@ -252,24 +270,7 @@ const Dashboard = () => {
     }
   };
 
-  const checkProfileComplete = async (userId: string) => {
-    const { data, error } = await supabase
-      .from('users')
-      .select('age_category, gender, occupation, location')
-      .eq('user_id', userId)
-      .single();
-
-    if (error) {
-      console.error('Error fetching user data:', error);
-      return;
-    }
-
-    if (data?.age_category && data?.gender && data?.occupation && data?.location) {
-      setIsProfileComplete(true);
-    } else {
-      setIsProfileComplete(false);
-    }
-  };
+ 
 
   useEffect(() => {
     document.addEventListener('mousedown', handleClickOutside);
@@ -303,7 +304,6 @@ const Dashboard = () => {
 
   const bgColor = darkMode ? 'bg-gray-900' : 'bg-gray-50';
   const textColor = darkMode ? 'text-white' : 'text-gray-800';
-  const cardBg = darkMode ? 'bg-gray-800' : 'bg-white';
   const borderColor = darkMode ? 'border-gray-700' : 'border-gray-200';
 
   if (!mounted) return null;

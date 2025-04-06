@@ -28,7 +28,7 @@ const Profile = () => {
   const [gender, setGender] = useState('');
   const [occupation, setOccupation] = useState('');
   const [location, setLocation] = useState('');
-  const [interests, setInterests] = useState<string[]>([]);
+
 //   const [inputInterest, setInputInterest] = useState('');
   const [user, setUser] = useState<UserType | null>(null);
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -40,31 +40,32 @@ const Profile = () => {
     const storedDarkMode = localStorage.getItem('darkMode');
     setDarkMode(storedDarkMode !== 'false');
   }, []);
-  const fetchUserProfile = async (userId: string) => {
-    try {
-      const { data, error } = await supabase
-        .from('users')
-        .select('*')
-        .eq('user_id', userId)
-        .single(); // Fetch a single profile by user_id
-      
-      if (error) {
-        console.error('Error fetching user profile:', error);
-      } else {
-        if (data) {
-          setFullName(data.full_name || '');
-          setAgeCategory(data.age_category || '');
-          setGender(data.gender || '');
-          setOccupation(data.occupation || '');
-          setLocation(data.location || '');
-        }
-      }
-    } catch (err) {
-      console.error('Error fetching user profile:', err);
-    }
-  };
+
 
   useEffect(() => {
+    const fetchUserProfile = async (userId: string) => {
+      try {
+        const { data, error } = await supabase
+          .from('users')
+          .select('*')
+          .eq('user_id', userId)
+          .single(); // Fetch a single profile by user_id
+        
+        if (error) {
+          console.error('Error fetching user profile:', error);
+        } else {
+          if (data) {
+            setFullName(data.full_name || '');
+            setAgeCategory(data.age_category || '');
+            setGender(data.gender || '');
+            setOccupation(data.occupation || '');
+            setLocation(data.location || '');
+          }
+        }
+      } catch (err) {
+        console.error('Error fetching user profile:', err);
+      }
+    };
     const fetchUser = async () => {
       try {
         const { data: { session } } = await supabase.auth.getSession();
