@@ -1,60 +1,74 @@
-"What Am I Missing.com?" by Team Blindspot
+# **What Am I Missing.com?**
+by Team Blindspot
+
+This project is part of GrandinnoHack Interdesciplinary Graduate Hackathon
 GradinnoHack Table Choices:
-Tech & Skills: AI for Social Good
+| Category      | Details             |
+|---------------|---------------------|
+| Tech & Skills | AI for Social Good  |
+| Impact Area   | Media Literacy      |
+| User Group    | Youth & Students    |
 
-Impact Area: Media Literacy for Youth/Students
+##Problem Statement
 
-User Group: Youth, Students, and General Public
-
-Problem Statement
 Digital platforms increasingly shape the way we consume news by tailoring content through algorithms, often limiting exposure to diverse perspectives. This results in people of different political orientations, age groups, or media ecosystems having fundamentally different understandings of current events, contributing to social fragmentation and declining media literacy.
 
-Proposed Solution
+## Proposed Solution
 We developed a website where users can input biographical information and a topic of interest. In return, they receive:
 
-A curated collection of articles.
+- A curated collection of articles.
+- An AI-generated summary highlighting the differences between their likely perspective and an alternative viewpoint.
 
-An AI-generated summary highlighting the differences between their likely perspective and an alternative viewpoint.
+## 🛠️ Implementation Overview
 
-Implementation
-Tools:
-Frontend: Next.js
+### 🔧 Tools & Technologies
 
-Backend: Python, FastAPI
+- **Frontend:** Next.js  
+- **Backend:** Python, FastAPI  
+- **Database:** Supabase  
 
-Database: Supabase
+### 🧠 Model Context Protocol (MCP)-Inspired Architecture
 
-Model Context Protocol (MCP) Inspired Approach:
-FastAPI: Lightweight backend framework.
+#### Backend Framework
+- **FastAPI** – A lightweight and efficient web framework for handling API requests.
 
-BART Model: A pre-trained transformer model for summarization.
+#### Summarization Model
+- **BART (Bidirectional and Auto-Regressive Transformer)** – A pre-trained model used for generating concise and coherent article summaries.
 
-Faiss + TF-IDF: Used for indexing and vector embedding of the content for better retrieval.
+#### Search & Retrieval
+- **Faiss + TF-IDF** – Enables vector-based indexing and semantic search for relevant content.
 
-Google Server API: Fetches real-time news content.
+#### Real-time News Fetching
+- **Google Server API** – Used to query up-to-date news based on user input.
 
-Scraping Layer:
+#### Scraping & Content Extraction
+- **Newspaper3k** – Extracts full-text content from article URLs.  
+- **Playwright** – Acts as a fallback for browser-based scraping when standard extraction fails.
 
-Newspaper3k: Extracts the full content from articles.
+### 🔄 User Flow
 
-Playwright: A fallback for browser automation if necessary (e.g., if the article is not directly accessible).
+1. **User Input:** The user provides their biographical info and topic of interest.
+2. **Context Fetching:** Relevant news is retrieved using the Google Server API.
+3. **Content Extraction:** Full article content is extracted via Newspaper3k or Playwright.
+4. **Summarization:** Articles are summarized using the BART model.
+5. **Perspective Modeling:** The system generates summaries based on the user’s likely perspective and contrasts it with an alternative view.
+6. **Faiss Indexing:** Summaries and metadata are indexed using Faiss for efficient retrieval.
+7. **JSON Output:** Final output is returned in structured JSON format for display or further processing.
 
-User Flow:
-User Input: The user provides their biographical information and the topic of interest.
+### 🧩 Modular Architecture
 
-Context Fetching: Fetch context-aware news content using Google API.
+- **Composable Routes:** Modular, context-aware backend components that adapt to varying user input and task types.
+- **Agentic Programming:** Inspired by MCP, layering context-specific prompts to improve the quality and relevance of AI-generated summaries.
 
-News Content Retrieval: Articles are fetched using the Google Server API.
 
-Summarization: The fetched articles are summarized using the BART model.
 
-User Perspective: The system takes the user’s likely perspective into account and contrasts it with an alternative viewpoint.
+## 👥 Team Members
 
-Faiss Indexing: The content is indexed using Faiss for efficient and context-aware retrieval.
+| Name                   | Program     |
+|------------------------|-------------|
+| Sai Charan Merugu      | MS Computer Science (CS) |
+| Sara Santillanes       | MS Applied Data and Technology Analytics (ADTA) |
+| Naga Sai Sivani Tutika | MS Artificial Intelligence (AI) |
+| Vennela Balagala       | MS Computer Information Systems (CIS) |
+| Avijeet Shil           | PhD Computer Science (CS) |
 
-JSON Output: The output is returned in a structured JSON format for further processing or display.
-
-Modular Architecture:
-Composable Routes: The backend features modular, context-aware components that can be recombined to handle different tasks based on user input.
-
-Agentic Programming: The backend is inspired by the MCP protocol, defining layers of context-aware prompting to enhance the quality of the AI-generated summaries.
