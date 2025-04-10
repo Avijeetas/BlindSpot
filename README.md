@@ -51,7 +51,7 @@ We developed a website where users can input biographical information and a topi
 - **Faiss + TF-IDF** – Enables vector-based indexing and semantic search for relevant content.
 
 #### Real-time News Fetching
-- **Google Server API** – Used to query up-to-date news based on user input.
+- **Google Serper API** – Used to query up-to-date news based on user input.
 
 #### Scraping & Content Extraction
 - **Newspaper3k** – Extracts full-text content from article URLs.  
