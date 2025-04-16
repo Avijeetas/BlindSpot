@@ -7,7 +7,7 @@ by Team Blindspot
 | Sai Charan Merugu      | MS Computer Science (CS) | [@sai-charan-merugu-6a44ab225](https://www.linkedin.com/in/sai-charan-merugu-6a44ab225/) |
 | Sara Santillanes       | MS Applied Data and Technology Analytics (ADTA) | [@sara-g-santillanes](https://www.linkedin.com/in/sara-g-santillanes/) |
 | Naga Sai Sivani Tutika | MS Artificial Intelligence (AI) | [@sivani-tutika](https://www.linkedin.com/in/sivani-tutika/) |
-| Vennela Balagala       | MS Computer Information Systems (CIS) | [@vennela-balagala](https://www.linkedin.com/in/vennela-balagala/) |
+| Vennela Balagala       | MS Computer Science (CS) | [@vennela-balagala](https://www.linkedin.com/in/vennela-balagala/) |
 | Avijeet Shil           | PhD Computer Science (CS) | [@avijeetshil](https://www.linkedin.com/in/avijeetshil/) |
 
 
